@@ -1,0 +1,506 @@
+<html>
+<head>
+    <title>My Book</title>
+</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<body bgcolor="sky blue">
+    <p>
+        <center>
+        <ul style="list-style-type: none;  padding: 0;">
+        <li style="display: inline; background-color:pink; margin-right: 10px"><a href="./home.html"
+            style="padding: 10px;color: white;background-color: greenyellow;text-decoration: none;margin-right: 15px;">HOME</a></li>
+        <li style="display: inline; background-color:pink; margin-right: 10px"><a href="./about.html"
+            style="padding: 10px;color: white;background-color: greenyellow;text-decoration: none;margin-right: 15px;">ABOUT</a></li>
+        <li style="display: inline; background-color:pink; margin-right: 10px"><a href="./contact.html"
+            style="padding: 10px;color: white;background-color: greenyellow;text-decoration: none;margin-right: 15px;">CONTACT</a></li>
+        <li style="display: inline; background-color:pink; margin-right: 10px"><a href="./services.html"
+            style="padding: 10px;color: white;background-color: greenyellow;text-decoration: none;margin-right: 15px;">SERVICES</a></li>
+        <li style="display: inline; background-color:pink; margin-right: 10px"><a href="./form.html"
+            style="padding: 10px;color: white;background-color: greenyellow;text-decoration: none;margin-right: 15px;">FORM</a></li>
+        <li style="display: inline; background-color:pink; margin-right: 10px"><a href="./table.html"
+            style="padding: 10px;color: white;background-color: greenyellow;text-decoration: none;margin-right: 15px;">TABLE</a></li>
+        <li style="display: inline; background-color:pink; margin-right: 10px"><a href="./mybook.html"
+            style="padding: 10px;color: white;background-color: greenyellow;text-decoration: none;margin-right: 15px;">MYBOOK</a></li>
+    </ul></center>
+<h1>DATABASE AND JAVA TOURISM CONNECT SYSTEM</h1>
+    <ol><h2><u><li>DATABASE</li></u></h2>
+        <ul type="CIRCLE"><h3><u><i><li>Tourist </li></i></u></h3>
+    
+         
+
+<img src="EEE.JPG"width=900 height=300><br><br><br><br>
+
+
+<P>
+Q1. CREATION OF DATABASE</P><p>
+Setting environment for using XAMPP for Windows.
+Francois@DESKTOP-GM17RD6 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.28-MariaDB mariadb.org binary distribution</P><p>
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.</P><p>
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</P><p>
+MariaDB [(none)]> CREATE DATABASE TouristConnect;
+Query OK, 1 row affected (0.052 sec)
+MariaDB [(none)]> USE TouristConnect;</P><p>
+Database changed</P><p>
+2.QWERIES TO CREATE TABLES</P><p>
+MariaDB [TouristConnect]> CREATE TABLE Tourist (
+    ->     TouristID INT PRIMARY KEY,
+    ->     Name VARCHAR(255),
+    ->     Phone VARCHAR(15),
+    ->     Email VARCHAR(255)
+    -> );</P><p>
+Query OK, 0 rows affected (0.388 sec)</P><p>
+
+MariaDB [TouristConnect]> CREATE TABLE Place (
+    ->     PlaceID INT PRIMARY KEY,
+    ->     Name VARCHAR(255),
+    ->     Description TEXT,
+    ->     Location VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.223 sec)</P><p>
+
+MariaDB [TouristConnect]> CREATE TABLE Application (
+    ->     ApplicationID INT PRIMARY KEY,
+    ->     TouristID INT,
+    ->     PlaceID INT,
+    ->     FOREIGN KEY (TouristID) REFERENCES Tourist(TouristID),
+    ->     FOREIGN KEY (PlaceID) REFERENCES Place(PlaceID)
+    -> );
+Query OK, 0 rows affected (0.202 sec)</P><p>
+
+MariaDB [TouristConnect]> CREATE TABLE Activity (
+    ->     ActivityID INT PRIMARY KEY,
+    ->     Name VARCHAR(255),
+    ->     Description TEXT,
+    ->     PlaceID INT,
+    ->     Price DECIMAL(10, 2),
+    ->     Date DATE,
+    ->     Duration INT,
+    ->     FOREIGN KEY (PlaceID) REFERENCES Place(PlaceID)
+    -> );
+Query OK, 0 rows affected (0.206 sec)</P><p>
+3.QWERIES TO INSERT DATA INTO ABOVE TABLES</P><p>
+MariaDB [TouristConnect]> INSERT INTO Tourist (TouristID, Name, Phone, Email)
+    -> VALUES (1, 'bonheur itangishaka', '0780482542', 'bonheuritangishaka72@gmail.com');
+Query OK, 1 row affected (0.127 sec)</P><p>
+
+MariaDB [TouristConnect]> INSERT INTO Place (PlaceID, Name, Description, Location)
+    -> VALUES (1, 'Volcano national park', 'Rwanda volcano park', 'Northern province');
+Query OK, 1 row affected (0.098 sec)</P><p>
+
+MariaDB [TouristConnect]>     INSERT INTO Application (ApplicationID, TouristID, PlaceID)
+    ->     VALUES (1,1,1);
+Query OK, 1 row affected (0.108 sec)</P><p>
+
+MariaDB [TouristConnect]> INSERT INTO Place (PlaceID, Name, Description, Location) VALUES (2, 'Muslim site', 'Anciety muslim', 'southern province');
+Query OK, 1 row affected (0.088 sec)</P><p>
+
+MariaDB [TouristConnect]> INSERT INTO Place (PlaceID, Name, Description, Location) VALUES (3,'Gisozi memorial site', 'Genocide memorial place', 'kigali city');
+Query OK, 1 row affected (0.090 sec)</P><p>
+
+MariaDB [TouristConnect]>     INSERT INTO Activity (ActivityID, Name, Description, PlaceID, Price, Date, Duration)
+    ->     VALUES ('1', 'Museum visit', 'Explore muslim history', '2', '$50', '17/12/2023', '3 ');
+Query OK, 1 row affected, 3 warnings (0.127 sec)</P><p>
+
+MariaDB [TouristConnect]> INSERT INTO Activity (ActivityID, Name, Description, PlaceID, Price, Date, Duration)
+    ->     VALUES ('2', 'Wild animal visit', 'Explore life of animals', '1', '$30', '5/11/2023', '2 ');
+Query OK, 1 row affected, 3 warnings (0.095 sec)</P><p>
+
+MariaDB [TouristConnect]>     INSERT INTO Activity (ActivityID, Name, Description, PlaceID, Price, Date, Duration)
+    ->     VALUES ('3', 'Memorial visit', 'Explore history of genocide', '3', '$70', '7/4/2024', '2 ');
+Query OK, 1 row affected, 3 warnings (0.064 sec)</P><p>
+4.QWERIES TO DISPLAY ALL INFORMATION</P><p>
+MariaDB [TouristConnect]> SELECT * FROM Tourist;</P><p>
++-----------+---------------------+------------+--------------------------------+
+| TouristID | Name                | Phone      | Email                          |
++-----------+---------------------+------------+--------------------------------+
+|         1 | bonheur itangishaka | 0780482542 | bonheuritangishaka72@gmail.com |
++-----------+---------------------+------------+--------------------------------+
+1 row in set (0.001 sec)</P><p>
+
+MariaDB [TouristConnect]> SELECT * FROM place;</P><p>
++---------+-----------------------+-------------------------+-------------------+
+| PlaceID | Name                  | Description             | Location          |
++---------+-----------------------+-------------------------+-------------------+
+|       1 | Volcano national park | Rwanda volcano park     | Northern province |
+|       2 | Muslim site           | Anciety muslim          | southern province |
+|       3 | Gisozi memorial site  | Genocide memorial place | kigali city       |
++---------+-----------------------+-------------------------+-------------------+
+3 rows in set (0.001 sec)</P><p>
+
+MariaDB [TouristConnect]> SELECT * FROM application;</P><p>
++---------------+-----------+---------+
+| ApplicationID | TouristID | PlaceID |
++---------------+-----------+---------+
+|             1 |         1 |       1 |
++---------------+-----------+---------+
+1 row in set (0.001 sec)</P><p>
+
+MariaDB [TouristConnect]> SELECT * FROM activity;</P><p>
++------------+-------------------+-----------------------------+---------+-------+------------+----------+
+| ActivityID | Name              | Description                 | PlaceID | Price | Date       | Duration |
++------------+-------------------+-----------------------------+---------+-------+------------+----------+
+|          1 | Museum visit      | Explore muslim history      |       2 |  0.00 | 0000-00-00 |        3 |
+|          2 | Wild animal visit | Explore life of animals     |       1 |  0.00 | 0000-00-00 |        2 |
+|          3 | Memorial visit    | Explore history of genocide |       3 |  0.00 | 0000-00-00 |        2 |
++------------+-------------------+-----------------------------+---------+-------+------------+----------+
+3 rows in set (0.001 sec)</P><p>
+
+5.QWERIES TO UPDATE INFORMATION</P><p><br>
+MariaDB [TouristConnect]> UPDATE Tourist</P><p>
+    -> SET Email = 'itangishaka@gmail.com'
+    -> WHERE TouristID = 1;
+Query OK, 1 row affected (0.091 sec)
+Rows matched: 1  Changed: 1  Warnings: 0</P><p>
+
+MariaDB [TouristConnect]> INSERT INTO Tourist (TouristID, Name, Phone, Email)
+    -> VALUES (2, 'niyitunga francois', '0790746153', 'francois72@gmail.com');
+Query OK, 1 row affected (0.050 sec)</P><p>
+
+MariaDB [TouristConnect]> INSERT INTO Tourist (TouristID, Name, Phone, Email)
+    -> VALUES (3, 'daniel ndererimana', '0781046502', 'daniel72@gmail.com');
+Query OK, 1 row affected (0.048 sec)</P><p>
+
+MariaDB [TouristConnect]> UPDATE Tourist
+    -> SET Email = 'daniel@gmail.com'
+    -> WHERE TouristID = 2;
+Query OK, 1 row affected (0.082 sec)
+Rows matched: 1  Changed: 1  Warnings: 0</P><p>
+
+SECTION 3</P><p>
+.VIEW TO INSERT DATA INTO TWO TABLES</P><p><BR>
+1.VIEW TO INSERT</P><p>
+ ]> CREATE VIEW InsertTouristData AS
+    -> SELECT * FROM Tourist;
+MariaDB [TouristConnect]> INSERT INTO Tourist (TouristID, Name, Phone, Email) VALUES (4, 'bonheur', '0734548677', 'bonheuritangishaka27@gmail.com');
+Query OK, 1 row affected (0.087 sec)</P><p>
+
+MariaDB [TouristConnect]> CREATE VIEW InsertplaceData AS</P><p>
+    -> SELECT * FROM place;</P><p>
+Query OK, 0 rows affected (0.109 sec)
+MariaDB [TouristConnect]> INSERT INTO Place (PlaceID, Name, description, location) VALUES (5, 'nyungwe forest', 'national forest south', 'southern province');</P><p>
+Query OK, 1 row affected (0.177 sec)</P><p>
+2.VIEW TO DISPLAY ALL THE INFORMATION</P><p>
+MariaDB [TouristConnect]> CREATE VIEW AllData AS</P><p>
+    -> SELECT TouristID, Name, Phone, Email FROM Tourist
+    -> UNION ALL
+    -> SELECT PlaceID, Name, Description, Location FROM Place
+    -> UNION ALL
+    -> SELECT ApplicationID, TouristID, PlaceID, NULL FROM Application
+    -> UNION ALL
+    -> SELECT ActivityID, Name, Description, PlaceID FROM Activity;
+Query OK, 0 rows affected (0.074 sec)</P><p>
+3.VIEW TO UPDATE</P><p><BR>
+MariaDB [touristconnect]> CREATE VIEW UpdateTouristAndPlace AS
+    -> SELECT t.touristID, t.name AS touristName, t.phone AS touristPhone, t.email AS touristEmail,
+    ->        p.placeid, p.name AS placeName, p.description AS placeDescription, p.location AS placeLocation
+    -> FROM tourist t
+    -> INNER JOIN place p ON t.touristID = p.placeid;
+Query OK, 0 rows affected (0.077 sec)
+
+4.VIEW TO DELETE</P><p>
+MariaDB [touristconnect]> CREATE VIEW DeleteTouristAndPlace AS
+    -> SELECT t.touristID, t.name AS touristName, t.phone AS touristPhone, t.email AS touristEmail,
+    ->        p.placeid, p.name AS placeName, p.description AS placeDescription, p.location AS placeLocation
+    -> FROM tourist t
+    -> INNER JOIN place p ON t.touristID = p.placeid;
+Query OK, 0 rows affected (0.075 sec)</P><p>
+5. VIEW WITH SUBQWERIES</P><p>
+MariaDB [touristconnect]> CREATE VIEW TouristWithApplications AS
+    -> SELECT t.touristID, t.name AS touristName, t.phone AS touristPhone, t.email AS touristEmail,
+    ->        a.applicationId, a.placeid AS appliedPlaceId,
+    ->        (SELECT p.name FROM place p WHERE p.placeid = a.placeid) AS appliedPlaceName
+    -> FROM tourist t
+    -> INNER JOIN application a ON t.touristID = a.touristID;
+Query OK, 0 rows affected (0.151 sec)</P><p>
+SECTION 3 PROCEDURE</P><p>
+1.PROCEDURE TO INSERT DATA</P><p>
+MariaDB [TouristConnect]> CREATE PROCEDURE InsertData(</P><p>
+    ->     IN p_TouristID INT,</P><p>
+    ->     IN p_Name VARCHAR(255),</P><p>
+    ->     IN p_Phone VARCHAR(15),</P><p>
+    ->     IN p_Email VARCHAR(255),</P><p>
+    ->     IN p_PlaceID INT,</P><p>
+    ->     IN p_PlaceName VARCHAR(255),</P><p>
+    ->     IN p_PlaceDescription TEXT,</P><p>
+    ->     IN p_PlaceLocation VARCHAR(255),</P><p>
+    ->     IN p_ApplicationID INT,</P><p>
+    ->     IN p_ApplicationTouristID INT,</P><p>
+    ->     IN p_ApplicationPlaceID INT,</P><p>
+    ->     IN p_ActivityID INT,</P><p>
+    ->     IN p_ActivityName VARCHAR(255),</P><p>
+    ->     IN p_ActivityDescription TEXT,</P><p>
+    ->     IN p_ActivityPlaceID INT,</P><p>
+    ->     IN p_ActivityPrice DECIMAL(10, 2),</P><p>
+    ->     IN p_ActivityDate DATE,</P><p>
+    ->     IN p_ActivityDuration INT</P><p>
+    -> )
+    -> BEGIN</P><p>
+    ->     INSERT INTO Tourist (TouristID, Name, Phone, Email)
+    ->     VALUES (1, 'bonheur itangishaka', '0780482542', 'bonheuritangishaka72@gmail.com');
+    ->     INSERT INTO Place (PlaceID, Name, Description, Location)
+    ->     VALUES (1, 'Volcano national park', 'Rwanda volcano park', 'Northern province');
+    ->     INSERT INTO Application (ApplicationID, TouristID, PlaceID)
+    ->     VALUES (1,1,1);
+    ->     INSERT INTO Activity (ActivityID, Name, Description, PlaceID, Price, Date, Duration)
+    ->     VALUES ('1', 'Museum visit', 'Explore muslim history', '2', '$50', '17/12/2023', '3');
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.151 sec)</P><p>
+
+2. PROCEDURE TO DISPLAY ALL INFORMATION</P><p>
+MariaDB [TouristConnect]> CREATE PROCEDURE DisplayAllData()
+    -> BEGIN
+    -> SELECT * FROM Tourist;
+    -> SELECT * FROM Place;
+    -> SELECT * FROM Application;
+    -> SELECT * FROM Activity;
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.159 sec)</P><p>
+3. PROCEDURE TO UPDATE INFORMATION IN TABLE</P><p>
+MariaDB [touristconnect]> CREATE PROCEDURE UpdateTouristAndPlace(
+    ->     IN tourist_id INT,
+    ->     IN new_tourist_name VARCHAR(255),
+    ->     IN new_phone VARCHAR(20),
+    ->     IN new_email VARCHAR(255),
+    ->     IN place_id INT,
+    ->     IN new_place_name VARCHAR(255),
+    ->     IN new_description VARCHAR(255),
+    ->     IN new_location VARCHAR(255)
+    -> )
+    -> BEGIN</P><p>
+    ->     UPDATE tourist</P><p>
+    ->     SET name = new_tourist_name, phone = new_phone, email = new_email
+    ->     WHERE touristID = tourist_id;
+    ->     UPDATE place
+    ->     SET name = new_place_name, description = new_description, location = new_location
+    ->     WHERE placeid = place_id;
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.137 sec)</P><p>
+4.CREATE PROCEDURE TO DELETE DATA</P><p>
+CREATE PROCEDURE DeleteTourist(
+  IN p_TouristID INT
+)
+BEGIN
+  DELETE FROM Tourist
+  WHERE Tourist_ID = p_TouristID;
+END;
+//
+DELIMITER //
+CREATE PROCEDURE DeletePlace(
+  IN p_PlaceID INT
+)
+BEGIN
+  DELETE FROM Place
+  WHERE Place_ID = p_PlaceID;
+END;
+//
+
+5.PROCEDURE WITH SUBQWEIRIES</P><p>
+DELIMITER //
+CREATE PROCEDURE DeleteActivityByName(
+  IN p_ActivityName VARCHAR(255)
+)
+BEGIN
+  DECLARE v_ActivityID INT;
+    SELECT Activity_ID INTO v_ActivityID
+  FROM Activity
+  WHERE Name = p_ActivityName;
+  DELETE FROM Activity
+  WHERE Activity_ID = v_ActivityID;
+END;
+//
+SECTION V: TRIGGERS
+1.TRIGGER AFTER INSERT 
+MariaDB [touristconnect]> CREATE TRIGGER AfterInsertTourist
+    -> AFTER INSERT
+    -> ON tourist
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO tourist(TouristID, Name, Phone, Email)
+    ->     VALUES (1, 'John Irumva', 0783453756, 'john@example.com');
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.134 sec)
+MariaDB [touristconnect]> CREATE TRIGGER AfterInsertPlace
+    -> AFTER INSERT
+    -> ON place
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO place(PlaceID, Name, Description, Location, Price, Date)
+    ->     VALUES (1, 'VOLCANO NATIONAL PARK', 'NATIONAL PARK VISITS', 'NORTH RWANDA', 200.00, '2023-09-05');
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.134 sec)
+2.TRIGGER AFTER UPDATE</P><p>
+MariaDB [touristconnect]> CREATE TRIGGER AfterUpdateTourist
+    -> AFTER UPDATE
+    -> ON tourist
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO tourist(TouristID, Name, Phone, Email)
+    ->     VALUES (1, 'John Irumva', 0783453756, 'john@example.com');
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.134 sec)</P><p>
+
+MariaDB [touristconnect]> CREATE TRIGGER AfterUpdatePlace
+    -> AFTER UPDATE
+    -> ON place
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO place(PlaceID, Name, Description, Location, Price, Date)
+    ->     VALUES (1, 'VOLCANO NATIONAL PARK', 'NATIONAL PARK VISITS', 'NORTH RWANDA', 200.00, '2023-09-05');
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.054 sec)</P><p>
+
+3.TRIGGER AFTER DELETE</P><p>
+MariaDB [touristconnect]> CREATE TRIGGER AfterDeleteTourist
+    -> AFTER DELETE
+    -> ON tourist
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO tourist(TouristID, Name, Phone, Email)
+    ->     VALUES (1, 'John Irumva', 0783453756, 'john@example.com');
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.134 sec)</P><p>
+
+MariaDB [touristconnect]> CREATE TRIGGER AfterDeletePlace
+    -> AFTER DELETE
+    -> ON place
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO place(PlaceID, Name, Description, Location, Price, Date)
+    ->     VALUES (1, 'VOLCANO NATIONAL PARK', 'NATIONAL PARK VISITS', 'NORTH RWANDA', 200.00, '2023-09-05');
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.054 sec)</P><p>
+
+SECTION VI: USER CREATION AND GRANT ACCESS</P><p>
+MariaDB [touristconnect]> CREATE USER 'ITANGISHAKABonheur'@'localhost' IDENTIFIED BY '222009200';
+Query OK, 0 rows affected (0.058 sec)v
+
+MariaDB [touristconnect]> GRANT INSERT, UPDATE, DELETE ON touristconnect.* TO 'ITANGISHAKABonheur'@'localhost';
+Query OK, 0 rows affected (0.047 sec)
+
+MariaDB [touristconnect]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [touristconnect]> REVOKE INSERT ON touristconnect.* FROM 'ITANGISHAKABonheur'@'localhost';
+Query OK, 0 rows affected (0.061 sec)
+
+MariaDB [touristconnect]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.002 sec)
+</P><p>
+
+                                                            
+
+
+
+                                                            
+                                                            
+SECTION 3: JAVA PROGRAMMING:</P><p>
+INTRODUCTION:</P><p>
+In this chapter I will be describing how tourist connect system is going to work from beginning up to the end. Under this chapter I am going to full detail of how tourist connect project form page will function together with database that have been created before.</P><p> 
+3.2 Tools used to develop this system in java programming: 
+Eclipse IDE: </P><p>an integrated development environment used in computer programming.</P><p> It contains a base workspace and an extensible plug-in system for customizing the environment. </P><p>It is the second-most-popular IDE for Java development, and, until 2016, was the most popular. </P><p>
+JAR stands for Java Archive. </P><p>It's a file format based on the popular ZIP file format and is used for aggregating many files into one. </P><p>Although JAR can be used as a general archiving tool, the primary motivation for its development was so that Java applets and their requisite components.</P><p>
+ 
+MySQL Connectors. </P><p>MySQL provides standards-based drivers for JDBC, ODBC, and .Net enabling developers to build database applications in their language </P><p>
+ 
+ 
+ 
+3.3 Forms description.</P><p>
+1. Welcome Page.</P><p></P><p>
+This is first page of my project as home page where system will show this page to both admin and tourist so that can log in as his/herself and system will direct one to their appropriate section.
+ 
+
+This page show two button where admin and tourist will click to login in as explained few in below:</P><p>
+LOGIN AS ADMIN:</P><p> Administrator will enter in system and choose to click on login button in purpose to interact with the system.</P><p>
+Here, when admin login into the system will direct him into system himself/herself.</P><p>
+LOGIN AS TOURIST: </P><p>Here, the tourist will enter in system as same as admin do by clicking on login as tourist button.</P><p>
+When click on this button, the system will direct him into system as himself and continue to do anything want into system.</P>
+
+<img src="EEE.JPG"width=900 height=300><br><br><br><br>
+
+<p>2. ADMIN REGISTRATION:</P><p>
+As it described on below form, Admin will register himself into the system and fulfill their information on provided space</P><p>
+ <img src="tre.JPG"width=900 height=300><br><br><br><br>
+ 
+At register button, when admin click to register the information provided will direct into database store to keep that details
+He can delete the information entered when seems that is right to enter new other one, and also he can update when want to change existing entered data.</P><p>
+
+3.ADMIN LOGIN:</P><p>
+At this page user, once admin login as admin the system will direct him here on Admin login page.</P><p>
+
+
+Admin will enter their username and password as show above,</P><p>
+After entering this details the system will direct him as only admin interact with the system but when fulfill wrong information the system will not log him into the system.</P><p>
+
+3.ADMIN HOME PAGE TO ADD PLACE:</P><p>
+This section is welcome page to the admin as it looks below:</P><p>
+ 
+When Admin welcomed into the system, he/she will allowed to add place into the system where tourist will select to apply. It is done by clicking on add new place button so that the system allow admin to insert the place to be visited. Not only adding new place but also are allowed to exit into the system.</P><p>
+ 4.PLACE REGISTRATION FORM:</P><p>
+Under this section, admin are allowed to insert, delete, update and select place at their wish so that when tourist login in to apply will view inserted place. It is only admin that allowed to insert the place.
+
+ 
+<img src="tco.JPG"width=900 height=300><br><br><br><br>
+5.TOURIST REGISTRATION FORM:</P><p>
+This part come is belong to user of system/tourist. Under this section, tourist will register their information on provided space so in order to interact with the system.
+They allowed to register, delete, update and select the information.
+Once register, the system will keep record of that provided details, once delete the system will delete the records that have entered, and also will change existing information by clicking on update.</P><p>
+ 
+<img src="tre.JPG"width=900 height=300><br><br><br><br>
+5.TOURIST LOGIN FORM:</P><p>
+After registration of tourist, the system will direct user to login form to enter the Username and password that matches with the on provided in registration but this works for only password section only. For username he can choose to enter any name he wishs use. Once user enter wrong password the system will not allow to login.</P><p>
+ 
+
+
+<img src="tlo.JPG"width=900 height=300><br><br><br><br>
+
+6.PLACE SELECTION PAGE:</P><p>
+This is the other page that user will appear after login into system.
+It is where can view the places and apply for it.</P><p>
+
+
+<img src="place.JPG"width=900 height=300><br><br><br><br>
+ 
+Under this section the user will view the uploaded place into system and choose what want to apply with. 
+After clicking on view button, the system will show the place to visit and then user will click on apply to book that place.
+Not only applying for place but also can exit into the system and system will back on Admin</P><p>
+
+
+
+ 
+
+3.4 SPECIAL BUTTON</P><p>
+BACK BUTTON:</P><p> This button will direct to previous page that you were on.</P><p>
+Admin and user of system will click to this button to back to previous.</P><p>
+
+EXIT BUTTON: </P><p>This button will work as logout from the existing page to home page where you can enter login details.</P><p>
+
+3.5 CONCLUSION.</P><p>
+Finally, by concluding and finishing this project developed in eclipse IDE, and as tourist connect system developed, it is showing the result that I wish to saw from the starting up to the end. As we are in world of technology many developer uses java programming language to build the system because that java is most popular today.</P><p>
+3.6 REFERENCE:</P><p>
+1. Software engineering 10th edition (Ian Somerville)v
+2. System analysis and design in changing world (John sat zinger, Robert Jackson, Stephen burd)</P>
+
+
+       </ul>
+        
+    </ol>
+    <marquee><u><i><h2 style="color: white;">Prepared By</i></u>:   ITANGISHAKA BONHEUR</h2></marquee>
+    </body>
+    </html>
